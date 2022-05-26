@@ -9,11 +9,12 @@ object WallService {
         return updatePost.id
     }
 
-    fun update( post: Post): Boolean{
-       for( (index, item) in posts.withIndex()){
+    fun update( post: Post): Any {
+       for( (ownerId, item) in posts.withIndex()){
            if (item.id == post.id)
-               posts[index] = post
-               return true
+               posts[ownerId] = post
+           return post.ownerId
+           return true
        }
         return false
     }
