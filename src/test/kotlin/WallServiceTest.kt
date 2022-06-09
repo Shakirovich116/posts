@@ -1,54 +1,59 @@
-import org.junit.Assert.assertEquals
+import org.junit.Assert.*
 import org.junit.Test
-class WallServiceTest {
 
-    @Test
-    fun add() {
-        //arrange
-        var lastId = 1
-        val expected = 2
-        // act
-        lastId++
-        val actual = lastId
-        //assert
-        assertEquals(expected, actual)
-    }
-}
+    class WallServiceTest {
+
+        val post = Post(
+            id = 0,
+            ownerId = 1,
+            fromId = 1,
+            createdBy = 1,
+            date = 1234,
+            text = "Text",
+            replyOwnerId = 4,
+            replyPostId = 5,
+            friendsOnly = false,
+            postType = "post",
+            signerId = 1,
+            canPin = true,
+            canDelete = true,
+            canEdit = true,
+            isPinned = false,
+            markedAsAds = false,
+            isFavorite = false,
+            postponedId = 0
+        )
 
 
-    @Test
-    fun updateIsTrue(): Boolean {
-        //arrange
-        val ownerId = 1
-        val expected = true
-
-        // act
-        if (ownerId == 1) {
-            val actual = true
-            return true
+        @Test
+        fun addTest() {
+            val service = WallService
+            service.add(post.copy(text = "Text 2"))
+            val testPost = post.copy(text = "New Text")
+            val result = service.add(testPost)
+            assertEquals(testPost.copy(id = 2), result)
         }
 
-        //assert
-        assertEquals(expected, true)
-    }
-
-
-
-
-@Test
-fun updateIsFalse(): Boolean {
-
-    //arrange
-    val ownerId = 1
-    val expected = false
-
-    // act
-    if (ownerId !=1) {
-        val actual = false
-        return false
+        @Test
+        fun updateTest() {
+            val service = WallService
+            service.add(post)
+            service.add(post.copy(text = "Text 2"))
+            service.add(post.copy(text = "Text 3 "))
+            val update = post.copy(id = 2, text = "Text 3")
+            val result = service.update(update)
+            assertTrue(result)
         }
 
-    //assert
-    assertEquals(expected, false)
-}
+        @Test
+        fun updateNotValidTest() {
+            val service = WallService
+            service.add(post)
+            service.add(post.copy(text = "Text 2"))
+            service.add(post.copy(text = "Text 3 "))
+            val update = post.copy(id = 100, text = "New Text")
+            val result = service.update(update)
+            assertFalse(result)
+        }
 
+    }

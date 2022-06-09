@@ -23,9 +23,4 @@ data class Post(
     val markedAsAds: Boolean,
     val isFavorite: Boolean,
     val postponedId:Int,
-    val videoAttachment: VideoAttachment,
-    val audioAttachment: AudioAttachment,
-    val photoAttachment: PhotoAttachment,
-    val documentAttachment: DocumentAttachment,
-    val pollAttachment: PollAttachment
-    )
+  )

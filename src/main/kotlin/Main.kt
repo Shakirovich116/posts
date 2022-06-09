@@ -23,11 +23,11 @@ fun main(){
         true,
         true,
         85111,
-        Video,
-        Audio,
-        Photo,
-        Document,
-        Poll
+//        Video,
+//        Audio,
+//        Photo,
+//        Document,
+//        Poll
     )
 
     WallService.add(origin)
