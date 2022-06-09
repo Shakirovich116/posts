@@ -1,7 +1,7 @@
 
 data class Post(
     val id: Int,
-    val ownerId: Long,
+    val ownerId: Int,
     val fromId: Long,
     val createdBy: Long,
     val date: Int,
