@@ -1,6 +1,7 @@
 object WallService {
 
     val posts = emptyArray<Post>()
+    private var comments = emptyArray<Comment>()
     private var lastId = 0
 
 
@@ -18,6 +19,16 @@ object WallService {
             }
         }
         return false
+    }
+
+    fun createComment(comment: Comment) {
+        for ((index, vpost) in posts.withIndex()) {
+            if (vpost.id == comment.postId) {
+                comments += comment
+                return
+            }
+        }
+        throw PostNotFoundException("No post with id = ${comment.postId}")
     }
 
 

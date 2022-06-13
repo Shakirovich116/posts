@@ -12,7 +12,7 @@ import org.junit.Test
             text = "Text",
             replyOwnerId = 4,
             replyPostId = 5,
-            friendsOnly = false,
+            friendsOnly = 56,
             postType = "post",
             signerId = 1,
             canPin = true,
@@ -24,6 +24,13 @@ import org.junit.Test
             postponedId = 0
         )
 
+        val comment = Comment(
+                ownerId = 1,
+                postId = 2,
+                message = "Comment to the post",
+                replyToComment = 0,
+                stickerId = 0,
+                guid = "")
 
         @Test
         fun addTest() {
@@ -56,4 +63,11 @@ import org.junit.Test
             assertFalse(result)
         }
 
+        @Test(expected = PostNotFoundException::class)
+        fun shouldThrowTest() {
+            val service = WallService
+            service.add(post)
+            service.add(post.copy(text = "Text 2"))
+            service.createComment(comment)
+        }
     }

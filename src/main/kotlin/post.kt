@@ -9,11 +9,6 @@ data class Post(
     val replyOwnerId: Long,
     val replyPostId: Long,
     val friendsOnly: Int,
-    val comments: String,
-    val copyright: String,
-    val likes: Int,
-    val reposts: String,
-    val views: String,
     val postType: String,
     val signerId: Long,
     val canPin: Boolean,
@@ -24,3 +19,14 @@ data class Post(
     val isFavorite: Boolean,
     val postponedId:Int,
   )
+class Comment(
+    val ownerId: Int,
+    val postId: Int,
+    val fromGroup: Int = 0,
+    val message: String,
+    val replyToComment: Int,
+    val stickerId: Int,
+    val guid: String
+)
+
+class PostNotFoundException(message: String) : RuntimeException(message)

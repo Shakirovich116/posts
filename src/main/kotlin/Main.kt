@@ -10,29 +10,28 @@ fun main(){
         879,
         90,
         "Пока",
-        "Овощ",
         45,
-        "false",
-        "false",
-        "ПВооо",
-        8699,
         true,
         false,
         false,
         false,
         true,
         true,
-        85111,
-//        Video,
-//        Audio,
-//        Photo,
-//        Document,
-//        Poll
+        25
     )
+
 
     WallService.add(origin)
 
+    val comment = Comment(
+        ownerId = 1,
+        postId = 0,
+        message = "Comment to the post",
+        replyToComment = 0,
+        stickerId = 0,
+        guid = ""
+    )
 
-
+    WallService.createComment(comment)
 
 }
